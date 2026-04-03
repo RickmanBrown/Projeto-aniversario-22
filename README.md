@@ -48,3 +48,4 @@ projeto/
     ├── Ramon.png
     └── Kaio.png
 ```
+© 2026 Rickman Brown
