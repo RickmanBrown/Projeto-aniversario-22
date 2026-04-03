@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="imagens/presente-icon.png">
+  <title>Surpresa de Aniversário</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="scene">
+
+    <!-- CENA DA PORTA -->
+    <section id="portaCena" class="tela ativa">
+      <div class="porta-container">
+        <p class="texto-porta">Clique na porta para entrar</p>
+
+        <div id="porta" class="porta">
+          <div class="painel painel-topo"></div>
+          <div class="painel painel-baixo"></div>
+          <div class="macaneta"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CENA DA SALA -->
+    <section id="salaCena" class="tela">
+      <div id="sala" class="sala apagada">
+
+        <div id="overlayEscuro" class="overlay-escuro"></div>
+
+        <button id="interruptor" class="interruptor-centro">Ligar a luz 💡</button>
+
+        <div id="banner" class="banner">Feliz aniversário ✨</div>
+
+        <!-- CENÁRIO -->
+        <div class="parede"></div>
+        <div class="chao"></div>
+
+        <div id="confetes" class="confetes"></div>
+
+        <!-- BALÕES -->
+        <div class="baloes">
+          <span class="balao azul balao1"></span>
+          <span class="balao roxo balao2"></span>
+          <span class="balao rosa balao3"></span>
+          <span class="balao amarelo balao4"></span>
+          <span class="balao azul balao5"></span>
+          <span class="balao rosa balao6"></span>
+          <span class="balao roxo balao7"></span>
+          <span class="balao amarelo balao8"></span>
+        </div>
+
+        <!-- mesa -->
+        <div class="mesa-grande">
+          <div class="bolo">
+            <div class="vela vela1">
+              <span class="fogo"></span>
+            </div>
+            <div class="vela vela2">
+              <span class="fogo"></span>
+            </div>
+            <div class="vela vela3">
+              <span class="fogo"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- convidados -->
+        <img src="imagens/Ramon.png" class="personagem convidado ramon" alt="Ramon" />
+        <img src="imagens/Kaio.png" class="personagem convidado kaio" alt="Kaio" />
+        <img src="imagens/Gi.png" class="personagem convidado gi" alt="Gi" />
+        <img src="imagens/Juscelino.png" class="personagem convidado juscelino" alt="Juscelino" />
+        <img src="imagens/V.png" class="personagem convidado v" alt="V" />
+
+        <!-- olhos -->
+        <div class="personagemOlhos"></div>
+        <div class="personagemOlhosdois"></div>
+
+        <!-- paloma -->
+        <img id="paloma" src="imagens/Paloma-normal.png" class="personagem paloma" alt="Paloma" />
+
+        <!-- Alan andando -->
+        <img id="rickmanAndando" src="imagens/Rickman-andando.png" class="personagem rickman-andando"
+          alt="Rickman andando" />
+
+        <!-- Alan parado -->
+        <img id="rickmanNormal" src="imagens/Rickman-normal.png" class="personagem rickman-normal escondido"
+          alt="Rickman normal" />
+
+        <!-- diálogo -->
+        <div id="dialogoBox" class="dialogo escondido">
+          <p id="dialogoTexto"></p>
+          <button id="proximoDialogo">Continuar</button>
+        </div>
+
+        <!-- presente -->
+        <div id="presenteBox" class="modal escondido">
+          <div class="card">
+            <h2>Um presente para você 🎁</h2>
+            <p>Ele se aproximou com carinho e entregou o presente.</p>
+            <button id="abrirRosa">Abrir presente</button>
+          </div>
+        </div>
+
+        <!-- rosa -->
+        <div id="rosaBox" class="modal escondido">
+          <div class="card">
+            <h2>Presente de Alan</h2>
+            <p>Ele te entregou uma caixa que continha uma rosa e uma carta.</p>
+            <button id="abrirCarta">Continuar</button>
+          </div>
+        </div>
+
+        <!-- carta -->
+        <div id="cartaBox" class="modal escondido">
+          <div class="card">
+            <h2>Uma carta para você</h2>
+            <p>
+              Feliz aniversário. Que seu novo ciclo seja cheio de beleza,
+              força, carinho e sonhos realizados.
+            </p>
+            <p>
+              Esta noite foi feita para celebrar você. Todos aqui te amam muito, e eu sou muito grato por ter você na minha vida. Você é uma pessoa incrível, e eu espero que este presente te faça sorrir tanto quanto você me faz sorrir todos os dias ❤️
+            </p>
+            <button id="reiniciar">Recomeçar</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

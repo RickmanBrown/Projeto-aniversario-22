@@ -1,0 +1,553 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #120c1c;
+  color: white;
+  overflow: hidden;
+}
+
+.scene {
+  width: 100vw;
+  height: 100vh;
+}
+
+.tela {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.tela.ativa {
+  display: block;
+}
+
+/* PORTA */
+.porta-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #2a1b3f 0%, #120c1c 75%);
+}
+
+.texto-porta {
+  margin-bottom: 28px;
+  font-size: 24px;
+  color: #f4e8ff;
+}
+
+.porta {
+  width: 230px;
+  height: 390px;
+  position: relative;
+  background: linear-gradient(to bottom, #6b3f2b, #442418);
+  border: 12px solid #26130d;
+  border-radius: 18px 18px 6px 6px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.porta:hover {
+  transform: scale(1.02);
+}
+
+.painel {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  border: 4px solid rgba(255, 226, 180, 0.18);
+  border-radius: 12px;
+}
+
+.painel-topo {
+  top: 50px;
+  height: 110px;
+}
+
+.painel-baixo {
+  bottom: 45px;
+  height: 140px;
+}
+
+.macaneta {
+  position: absolute;
+  right: 28px;
+  top: 185px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd978 0%, #bf8a27 70%, #7a5316 100%);
+  box-shadow: 0 0 10px rgba(255, 215, 121, 0.45);
+}
+
+/* SALA */
+.sala {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: background 0.6s ease;
+}
+
+.sala.apagada {
+  background: #050507;
+}
+
+.sala.acesa {
+  background: linear-gradient(to bottom, #44315a 0%, #2a2139 55%, #1c1628 100%);
+}
+
+/* CENÁRIO */
+.parede {
+  position: absolute;
+  inset: 0 0 22% 0;
+  background: linear-gradient(to bottom, #5f4a72 0%, #3b2c4d 100%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.chao {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 35%;
+  background:
+    repeating-linear-gradient(
+      to right,
+      #4a2d24 0px,
+      #4a2d24 55px,
+      #5a372b 55px,
+      #5a372b 58px
+    );
+  border-top: 6px solid rgba(255, 230, 200, 0.12);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.sala.acesa .parede,
+.sala.acesa .chao {
+  opacity: 1;
+}
+
+.overlay-escuro {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  transition: opacity 0.5s ease;
+  z-index: 20;
+}
+
+.sala.acesa .overlay-escuro {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.interruptor-centro {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 30;
+  padding: 18px 34px;
+  border: none;
+  border-radius: 14px;
+  background: #ece1d8;
+  color: #3a2b2b;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.sala.acesa .interruptor-centro {
+  display: none;
+}
+
+.banner {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2f1f46;
+  border: 2px solid #8c6aa8;
+  border-radius: 30px;
+  padding: 18px 30px;
+  font-size: 22px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 25;
+}
+
+.sala.acesa .banner {
+  opacity: 1;
+}
+
+/* BALÕES */
+.baloes,
+.confetes,
+.convidado,
+.mesa-grande {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.sala.acesa .baloes,
+.sala.acesa .confetes,
+.sala.acesa .convidado,
+.sala.acesa .mesa-grande {
+  opacity: 1;
+}
+
+.balao {
+  position: absolute;
+  width: 48px;
+  height: 64px;
+  border-radius: 50%;
+  z-index: 12;
+  animation: flutuar 3s ease-in-out infinite;
+}
+
+.balao::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 60px;
+  background: #ddd;
+  top: 62px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.azul {
+  background: #6bc8ff;
+}
+
+.roxo {
+  background: #8f6dff;
+}
+
+.rosa {
+  background: #f385b8;
+}
+
+.amarelo {
+  background: #ffd45b;
+}
+
+.balao1 { left: 80px; top: 70px; }
+.balao2 { left: 150px; top: 130px; animation-delay: 0.4s; }
+.balao3 { left: 230px; top: 85px; animation-delay: 0.8s; }
+.balao4 { left: 330px; top: 120px; animation-delay: 0.2s; }
+
+.balao5 { right: 330px; top: 80px; animation-delay: 0.5s; }
+.balao6 { right: 250px; top: 130px; animation-delay: 0.9s; }
+.balao7 { right: 160px; top: 90px; animation-delay: 0.3s; }
+.balao8 { right: 80px; top: 125px; animation-delay: 0.7s; }
+
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* CONFETE */
+.confetes {
+  position: absolute;
+  inset: 0;
+  z-index: 18;
+  pointer-events: none;
+}
+
+.confetes span {
+  position: absolute;
+  width: 10px;
+  height: 22px;
+  border-radius: 3px;
+  animation: cair 5s linear infinite;
+}
+
+@keyframes cair {
+  from {
+    transform: translateY(-120px) rotate(0deg);
+  }
+
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* MESA */
+.mesa-grande {
+  position: absolute;
+  left: 63%;
+  bottom: 235px;
+  transform: translateX(-50%);
+  width: 430px;
+  height: 26px;
+  background: #6a3723;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.mesa-grande::before,
+.mesa-grande::after {
+  content: "";
+  position: absolute;
+  top: 26px;
+  width: 16px;
+  height: 118px;
+  background: #482114;
+}
+
+.mesa-grande::before {
+  left: 38px;
+}
+
+.mesa-grande::after {
+  right: 38px;
+}
+
+.bolo {
+  position: absolute;
+  left: 50%;
+  top: -74px;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 74px;
+  background: #f07ca4;
+  border-radius: 14px 14px 10px 10px;
+  box-shadow: inset 0 -10px 0 rgba(0, 0, 0, 0.08);
+}
+
+.vela {
+  position: absolute;
+  top: -24px;
+  width: 8px;
+  height: 24px;
+  background: white;
+  border-radius: 4px;
+}
+
+.vela1 {
+  left: 30px;
+}
+
+.vela2 {
+  left: 95px;
+}
+
+.vela3 {
+  left: 160px;
+}
+
+.fogo {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: orange;
+  box-shadow: 0 0 10px yellow;
+}
+
+/* PERSONAGENS */
+.personagem {
+  position: absolute;
+  image-rendering: pixelated;
+  z-index: 15;
+}
+
+.paloma {
+  left: 110px;
+  bottom: 75px;
+  width: 165px;
+}
+
+.rickman-andando {
+  left: 600px;
+  bottom: 85px;
+  width: 170px;
+}
+
+.rickman-normal {
+  left: 300px;
+  bottom: 85px;
+  width: 170px;
+}
+
+/* convidados ao redor da mesa */
+.ramon {
+  left: 470px;
+  bottom: 235px;
+  width: 120px;
+}
+
+.kaio {
+  left: 620px;
+  bottom: 170px;
+  width: 120px;
+}
+
+.gi {
+  left: 800px;
+  bottom: 250px;
+  width: 120px;
+}
+
+.juscelino {
+  right: 250px;
+  bottom: 250px;
+  width: 120px;
+}
+
+.v {
+  right: 360px;
+  bottom: 180px;
+  width: 120px;
+}
+
+.escondido {
+  display: none !important;
+}
+
+/* OLHOS */
+.personagemOlhos,
+.personagemOlhosdois,
+.personagemOlhostres {
+  position: absolute;
+  width: 60px;
+  height: 35px;
+  padding: 10px;
+  background: white;
+  z-index: 13;
+}
+
+.personagemOlhos {
+  left: 26%;
+  top: 45%;
+}
+
+.personagemOlhosdois {
+  left: 34%;
+  top: 52%;
+}
+
+/* DIALOGO */
+.dialogo {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  width: 560px;
+  max-width: 92%;
+  background: rgba(18, 11, 30, 0.96);
+  border: 2px solid #8d74b7;
+  border-radius: 20px;
+  padding: 22px;
+  text-align: center;
+  z-index: 30;
+}
+
+.dialogo p {
+  font-size: 22px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.dialogo button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  background: #ffd57a;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* MODAIS */
+.modal {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 40;
+}
+
+.card {
+  background: #1c1329;
+  border: 2px solid #8d74b7;
+  border-radius: 22px;
+  padding: 30px;
+  width: 500px;
+  max-width: 90%;
+  text-align: center;
+}
+
+.card h2 {
+  color: #ffe29b;
+  margin-bottom: 16px;
+}
+
+.card p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.card button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  background: #ffd57a;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal.escondido,
+.dialogo.escondido,
+.personagem.escondido {
+  display: none !important;
+}
+
+/* ESCURO */
+.sala.apagada .personagem,
+.sala.apagada .convidado,
+.sala.apagada .mesa-grande,
+.sala.apagada .baloes,
+.sala.apagada .confetes,
+.sala.apagada .banner,
+.sala.apagada .parede,
+.sala.apagada .chao,
+.sala.apagada .personagemOlhos,
+.sala.apagada .personagemOlhosdois,
+.sala.apagada .personagemOlhostres {
+  visibility: hidden;
+}
+
+.sala.apagada .interruptor-centro,
+.sala.apagada .overlay-escuro {
+  visibility: visible;
+}
+
+.sala.acesa .personagemOlhos,
+.sala.acesa .personagemOlhosdois,
+.sala.acesa .personagemOlhostres {
+  visibility: visible;
+}
